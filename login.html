@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+          <h1>Global Food Production & Consumption Trends</h1>
+        </header>
+
+  <div class="auth-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" required>
+      <button type="submit">Login</button>
+      <p>New user? <a href="signup.html">Sign up here</a></p>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const users = JSON.parse(localStorage.getItem('users')) || {};
+
+      if (users[username] && users[username] === password) {
+        localStorage.setItem('loggedInUser', username);
+        window.location.href = 'index.html';
+      } else {
+        alert('Invalid username or password!');
+      }
+    });
+  </script>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>CSCE 5320 Scientific Data Visualization</p>
+    <p>Group - 10</p>
+    © Keerthi Chowdari Botlagunta | Vaishnavi Vemuri | Greeshma Vemula | Preethi Medipelli
+  </footer>
+
+</body>
+</html>

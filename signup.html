@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup</title>
+  <link rel="stylesheet" href="login.css">
+  <div class="container">
+    <header>
+      <h1>Global Food Production & Consumption Trends</h1>
+    </header>
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Sign up</h2>
+    <form id="signupForm">
+      <label for="newUsername">Username</label>
+      <input type="text" id="newUsername" required>
+      <label for="newPassword">Password</label>
+      <input type="password" id="newPassword" required>
+      <button type="submit">Sign up</button>
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </form>
+  </div>
+
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('newUsername').value;
+      const password = document.getElementById('newPassword').value;
+
+      const users = JSON.parse(localStorage.getItem('users')) || {};
+
+      if (users[username]) {
+        alert('Username already exists!');
+      } else {
+        users[username] = password;
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('Signup successful! You can now login.');
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
+
+  <footer class="footer">
+    <p>CSCE 5320 Scientific Data Visualization</p>
+    <p>Group - 10</p>
+    © Keerthi Chowdari Botlagunta | Vaishnavi Vemuri | Greeshma Vemula | Preethi Medipelli
+  </footer>
+
+</body>
+</html>
